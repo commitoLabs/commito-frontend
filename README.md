@@ -1,13 +1,23 @@
 # Commito Frontend (`commito-frontend`)
 
-Welcome to the **Frontend** repository for [Commito](https://github.com/commitoLabs), a commitment dApp built on the Stellar network! Stake your XLM, follow through on your habits, and earn your deposit back.
+Welcome to the **Frontend** repository for [Commito](https://github.com/commitoLabs), a decentralized commitment platform built on the Stellar network and Soroban smart contracts. Commito empowers users to build life-changing habits by putting their money where their mouth is. Stake your XLM, follow through on your daily or weekly habits, and earn your deposit back! If you slip up, your stake is slashed—giving you the ultimate financial accountability to achieve your goals.
 
-## About This Repository
-This is the user-facing web application that enables users to:
-- Connect their Stellar wallet (Freighter, Albedo, etc.).
-- Browse their active, failed, and completed commitments.
-- Create a new commitment and sign the transaction to deposit XLM into the Soroban contract.
-- View real-time stats of their streak.
+##  About Commito
+
+Consistency is hard, but financial incentives make it easier. **Commito** is a dApp designed to help users stick to their commitments (like exercising daily, reading, or learning to code) by leveraging the speed, security, and low fees of the Stellar network. 
+
+Here is how the platform works:
+1. **Commit & Stake**: A user defines a habit, sets a duration, and locks up (stakes) a specific amount of XLM via our Soroban smart contract.
+2. **Prove & Progress**: Users check in daily or weekly by providing proof of their completion.
+3. **Success or Slash**: If the user successfully completes their streak, they withdraw their full deposited XLM. If they miss a check-in, their staked funds are slashed.
+
+##  About This Repository
+
+This repository contains the **Next.js web application** that serves as the user-facing gateway to the Commito ecosystem. It provides a sleek, modern, and intuitive UI for users to:
+- **Seamlessly Connect**: Safely connect their Stellar wallets (e.g., Freighter, Albedo) to the dApp.
+- **Manage Commitments**: Browse their active streaks, review historical data of completed challenges, and see any failed commitments.
+- **Create Stakes**: Use a dynamic 'Create Commitment' flow to define a new goal, specify the XLM amount, and seamlessly sign the Soroban transaction to deposit funds directly from the browser.
+- **Track Progress**: View real-time analytics, including their current streak, total XLM staked, and days remaining on their dashboard.
 
 ## Tech Stack
 - **Framework**: React / Next.js

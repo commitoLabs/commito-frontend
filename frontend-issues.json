@@ -1,0 +1,124 @@
+{
+  "issues": [
+    {
+      "number": 1,
+      "title": "Project Setup: Configure ESLint, Prettier, and Husky for Next.js",
+      "body": "The newly initialized Next.js project requires a standard set of code quality tools to ensure a consistent codebase as contributors join. An issue must be completed that: (1) configures ESLint rules tailored for React and Next.js, (2) adds Prettier for un-opinionated code formatting, and (3) sets up Husky with `lint-staged` so that pre-commit hooks run linting and formatting automatically on staged files. Without this foundational step, Pull Requests from various developers might introduce messy or inconsistent formatting.",
+      "labels": ["frontend", "setup", "good first issue"]
+    },
+    {
+      "number": 2,
+      "title": "Implement Base Layout and Navigation Bar",
+      "body": "The web application needs a global `RootLayout` that wraps the content pages. An issue must be completed that: (1) builds a responsive `Navbar` component, (2) includes the Commito logo/branding on the left, and (3) leaves a placeholder area on the right for the upcoming Wallet Connection button. This `Navbar` should be sticky at the top of the viewport and accessible across all pages.",
+      "labels": ["frontend", "ui/ux", "medium"]
+    },
+    {
+      "number": 3,
+      "title": "Integrate Stellar Wallet Connection (Freighter)",
+      "body": "Users must connect a Stellar wallet to interact with the dApp. An issue must be completed that: (1) integrates the `@stellar/freighter-api` or a generic stellar wallet kit, (2) replaces the placeholder in the `Navbar` with a 'Connect Wallet' button, (3) securely requests and stores the user's public key upon connection, and (4) dynamically updates the button to show the truncated public key (e.g., `GABC...1234`) once connected. Crucial step as no on-chain transactions can happen without it.",
+      "labels": ["frontend", "web3", "high"]
+    },
+    {
+      "number": 4,
+      "title": "Implement Global State Management for Authentication",
+      "body": "To prevent prop-drilling the connected wallet state across the application, a global state context must be created. An issue must be completed that: (1) sets up a React Context (or Zustand store) to hold the current `walletAddress` and `connectionStatus` (disconnected, connecting, connected, error), and (2) wraps the `RootLayout` with this provider. This ensures any component can check if a user is authenticated before showing protected sections.",
+      "labels": ["frontend", "state-management", "medium"]
+    },
+    {
+      "number": 5,
+      "title": "Design and Build Landing Page Hero Section",
+      "body": "The application needs an engaging entry point that explains its value proposition. An issue must be completed that: (1) builds a modern, visually appealing `Hero` component on the home page (`/`), (2) clearly states the goal: 'Stake XLM. Build Habits. Earn your deposit back!', and (3) provides a primary 'Start Committing' Call to Action (CTA) button that redirects to the dashboard or prompts wallet connection.",
+      "labels": ["frontend", "ui/ux", "medium"]
+    },
+    {
+      "number": 6,
+      "title": "Create Reusable UI Component Library (Buttons, Inputs, Cards)",
+      "body": "To maintain design consistency and speed up development, a set of base UI components must be established using Tailwind CSS. An issue must be completed to building reusable, typed React components for: (1) a primary, secondary, and destructive `Button`, (2) a text `Input` and numeric `<input type='number' />` wrapper with error state styling, and (3) a container `Card` component for wrapping content structures.",
+      "labels": ["frontend", "ui/ux", "good first issue"]
+    },
+    {
+      "number": 7,
+      "title": "Build 'Create Commitment' Form Wrapper and Validation",
+      "body": "Users need a secure form to input the details of a new commitment. An issue must be completed that builds a form component which: (1) takes input for a 'Habit Name', 'Duration in Days', and 'Stake Amount (XLM)', (2) utilizes `react-hook-form` and `zod` for strict client-side validation to prevent negative stakes or empty names, and (3) displays validation errors immediately below the corresponding fields.",
+      "labels": ["frontend", "forms", "medium"]
+    },
+    {
+      "number": 8,
+      "title": "Develop Soroban Contract Invocation Hook for Depositing XLM",
+      "body": "The 'Create Commitment' form needs to actually perform a blockchain transaction. An issue must be completed that: (1) creates a custom React hook (e.g., `useCreateCommitment`), (2) utilizes `@stellar/stellar-sdk` and the Freighter API to construct an `invokeHostFunction` transaction, (3) simulates and then signs the transaction using the connected wallet to deposit the XLM into the Soroban contract, and (4) returns a success or failure status.",
+      "labels": ["frontend", "web3", "high"]
+    },
+    {
+      "number": 9,
+      "title": "Create User Dashboard Layout and Navigation Tabs",
+      "body": "Once a user connects their wallet, they need a dedicated space to view their info. An issue must be completed that: (1) creates a `/dashboard` route, (2) verifies wallet connection and redirects to `/` if unauthorized, and (3) sets up a tabbed interface or side-navigation with categories for 'Active Commitments', 'Completed', and 'Failed'.",
+      "labels": ["frontend", "routing", "medium"]
+    },
+    {
+      "number": 10,
+      "title": "Implement 'Active Commitments' View with Loading Skeleton",
+      "body": "The user needs to see the commitments they are currently pursuing. An issue must be completed that: (1) creates a grid or list view inside the Dashboard to display 'Active' habit cards, (2) uses mock data for now (to be replaced with API later), and (3) implements a loading skeleton (e.g., pulsing grey rectangles) to display while data is being fetched, keeping the UI responsive.",
+      "labels": ["frontend", "ui/ux", "medium"]
+    },
+    {
+      "number": 11,
+      "title": "Build 'Commitment Card' Component",
+      "body": "Individual commitments need a clear visual representation. An issue must be completed to build a `CommitmentCard` component that displays: (1) the habit name title, (2) the amount of XLM staked, (3) a visual progress bar indicating the days completed vs total days, and (4) a status badge (e.g., Active, Needs Proof, Pending).",
+      "labels": ["frontend", "ui/ux", "good first issue"]
+    },
+    {
+      "number": 12,
+      "title": "Develop Real-time Stats Widget for User Analytics",
+      "body": "Users should be motivated by their overall progress. An issue must be completed that: (1) builds a stats widget to sit atop the Dashboard, and (2) displays macroscopic aggregated data: Total XLM currently staked, Total Success Rate (%), and Current active streak of days across all habits. (Implement with mock data initially).",
+      "labels": ["frontend", "ui/ux", "medium"]
+    },
+    {
+      "number": 13,
+      "title": "Integrate Backend API: Fetch Active Commitments",
+      "body": "The hardcoded mock data for active commitments needs to be replaced with real backend data. An issue must be completed that: (1) implements a fetching layer (using `fetch` or `SWR`/`react-query`) targeting the NextJS/Express API endpoint, (2) passes the user's connected wallet address as a parameter, and (3) maps the returned array into the `CommitmentCard` components.",
+      "labels": ["frontend", "api-integration", "medium"]
+    },
+    {
+      "number": 14,
+      "title": "Integrate Backend API: Fetch History (Completed/Failed)",
+      "body": "Historical commitment data must be pulled from the backend and displayed. An issue must be completed that: (1) fetches past commitments from a history endpoint based on the wallet address, (2) parses the data to differentiate between successful withdrawals and slashed failures, and (3) renders lists in the corresponding 'Completed' and 'Failed' tabs on the dashboard.",
+      "labels": ["frontend", "api-integration", "medium"]
+    },
+    {
+      "number": 15,
+      "title": "Design and Build 'Submit Daily Proof' Modal Interface",
+      "body": "To maintain their streak, a user must submit proof of completion off-chain. An issue must be completed that: (1) adds a 'Check in' button to Active `CommitmentCard`s, (2) opens a Modal when clicked, and (3) provides an interface to either write a text update, paste a URL, or (optionally) upload an image representing that day's proof.",
+      "labels": ["frontend", "ui/ux", "medium"]
+    },
+    {
+      "number": 16,
+      "title": "Integrate Backend API: Submit Daily Check-in Proof",
+      "body": "The front-end Modal needs to push the check-in data to the server. An issue must be completed that: (1) intercepts the 'Submit Proof' Modal's form submission, (2) makes a POST request to the backend API with the `commitment_id` and proof payload, (3) handles success by updating the local state (incrementing the progress bar), and (4) handles failure by showing an error message.",
+      "labels": ["frontend", "api-integration", "high"]
+    },
+    {
+      "number": 17,
+      "title": "Develop Global Toast Notification System",
+      "body": "To improve UX, the app needs non-blocking feedback during interactions (like signing transactions). An issue must be completed that: (1) implements a global notification system (using a library like `react-hot-toast` or custom build), and (2) ensures that actions like 'Wallet Connected', 'Transaction Processing', 'Transaction Success', and 'Error' trigger the respective colored toast at the edge of the screen.",
+      "labels": ["frontend", "ui/ux", "good first issue"]
+    },
+    {
+      "number": 18,
+      "title": "Implement Global Error Handling and Fallback UI",
+      "body": "The application should gracefully recover or inform users if an API or blockchain node goes down. An issue must be completed that: (1) configures an `error.tsx` boundary file in Next.js App Router, (2) catches unexpected rendering errors, and (3) provides a user-friendly 'Something went wrong' UI screen with a 'Try Again' reload button.",
+      "labels": ["frontend", "error-handling", "medium"]
+    },
+    {
+      "number": 19,
+      "title": "Add Dark/Light Mode Theme Toggle",
+      "body": "Modern applications typically provide a dark and light color scheme. An issue must be completed that: (1) utilizes Tailwind's `dark:` modifier classes alongside `next-themes`, (2) creates a toggle switch component in the `Navbar`, and (3) ensures all text, borders, and background colors switch seamlessly between the two themes without page flashing.",
+      "labels": ["frontend", "ui/ux", "medium"]
+    },
+    {
+      "number": 20,
+      "title": "Design and Implement Application Footer",
+      "body": "The application needs a consistent footer to house secondary links. An issue must be completed that: (1) builds a `Footer` component rendered inside the `RootLayout` at the bottom of the viewport, and (2) includes social links (Twitter/X, Discord), a link back to the Commito GitHub repository, and basic legal links (e.g., Terms of Service placeholder), styled appropriately.",
+      "labels": ["frontend", "ui/ux", "good first issue"]
+    }
+  ]
+}
